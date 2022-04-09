@@ -21,19 +21,31 @@ public class CalendrierControlleur {
 		this.cantine=cantine;
 		this.employe=employe;
 		frm= new CalendrierVue (this, employe);
+		frm.majLst(cantine.getCalendrier());
 		frm.setVisible(true);
 	}
-	public DefaultListModel getJours () {
-		DefaultListModel l = new DefaultListModel();
-		ArrayList<Jour<Date,Menu>> calendrier = cantine.getCalendrier();
-		for (Jour<Date,Menu> jour : calendrier) {
-			l.addElement(jour.getDate().toString()+ " : "+jour.getMenu().getNom());
-		}
-		
-		return l;
-	}
-	public void retour () {
+
+	public void retour () {//on ferme la fenetre et on appelle controle.end qui réaffiche la fenetre précédente
 		frm.setVisible(false);
 		controle.end();
+	}
+	
+	public void delete (int id) { //on supprimer le jour d'index id dans la liste et on met a jour la liste
+		cantine.deleteJour(id);
+		frm.majLst(cantine.getCalendrier());
+	}
+	public void end(){ //lorsqu'un controleur fils est fini
+		frm.setVisible(true);
+		frm.majLst(cantine.getCalendrier());
+	}
+	
+	public void beginAddJour() {
+		frm.setVisible(false);
+		new AddJourControlleur(this,cantine);
+	}
+	
+	public void beginInfoJour(int index) { //commence le controlleur infojour
+		frm.setVisible(false);
+		new InfoJourControlleur (this, cantine.getCalendrier().get(index));
 	}
 }

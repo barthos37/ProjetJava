@@ -11,22 +11,24 @@ public class AccueuilControlleur implements Controlleur{
 	private Cantine cantine = new Cantine (0,0,"");
 	private Parent p = new Parent("Martin", "Rodolphe", new ArrayList<Eleve>());
 	
-	public void beginCantineParent () {
+	public void beginCantineParent () { //lance le controlleur cantineParent
 		frm.setVisible(false);
 		new CantineParentControlleur(this,p,cantine);
 	}
 
-	public void beginCantineEmploye () {
+	public void beginCantineEmploye () { //lance le controlleur calendrier en mode employe
 		frm.setVisible(false);
 		new CalendrierControlleur(this,cantine,true);
 	}
-	public void end () {
+	public void end () {  //lorsqu'un controlleur fils est fini
 		frm.setVisible(true);
 	}
 	public AccueuilControlleur () {
 		frm = new AccueuilVue(this);
 		frm.setVisible(true);
 		
+		
+		//on déclare la base de donnée sous forme de variable
 		Responsable r1 = new Responsable("nr1","pr1");
 		Responsable r2 = new Responsable("nr2","pr2");
 		
@@ -44,7 +46,7 @@ public class AccueuilControlleur implements Controlleur{
 		p.addEnfant(e2);
 		
 		//cantine
-		Aliment boeuf = new Aliment ("Boeuf HachÃ©",new ArrayList<Allergene>());
+		Aliment boeuf = new Aliment ("Boeuf Haché",new ArrayList<Allergene>());
 		Aliment haricot = new Aliment ("Haricots rouges",new ArrayList<Allergene>());
 		Aliment saucetomate = new Aliment ("Sauce tomate", new ArrayList<Allergene>());
 		Aliment pate = new Aliment("Pate", new ArrayList<Allergene>());

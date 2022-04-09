@@ -21,22 +21,22 @@ public class CantineParentControlleur implements Controlleur{
 		frm.setVisible(true);
 	}
 
-	public void beginSetAbonnement(int id) {
+	public void beginSetAbonnement(int id) {//on commence la fenetre de modification d'abonnement
 		frm.setVisible(false);
 		new AbonnementControlleur (this,p,id);
 		
 	}
-	public void endSetAbonnement() {
+	public void endSetAbonnement() { //la fenetre de modification d'abonnement est finie, on met a jour la vue et on l'a réaffiche
 		frm.majLst(p.getEnfants());
 		frm.setVisible(true);
 	}
 	
-	public void beginCalendrier() {
+	public void beginCalendrier() {//on commence la fenetre calendrier
 		frm.setVisible(false);
 		new CalendrierControlleur (this,cantine,false);
 	}
 	
-	public void retour() {
+	public void retour() {//on ferme la fenetre et on appelle controle.end qui réaffiche la fenetre d'accueil
 		frm.setVisible(false);
 		controle.end();
 	}
