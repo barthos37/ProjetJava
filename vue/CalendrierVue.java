@@ -12,14 +12,31 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.DefaultListModel;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
 
 public class CalendrierVue extends JFrame {
 
 	private JPanel contentPane;
 	private CalendrierControlleur controle;
+	private DefaultListModel contenuLst = new DefaultListModel ();
+	private JList list;
+
+	public void majLst(ArrayList<Jour<Date,Menu>> calendrier) {
+		contenuLst.clear();
+		for (Jour<Date,Menu> jour : calendrier) {
+			contenuLst.addElement(jour.toString());
+		}
+	}
+	
+	public void cmdSupprimer() {
+		controle.delete(list.getSelectedIndex());
+	}
+	
 	
 	public CalendrierVue(CalendrierControlleur controle, boolean employe) {
 		this.controle=controle;
@@ -31,10 +48,10 @@ public class CalendrierVue extends JFrame {
 		contentPane.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 21, 271, 183);
+		scrollPane.setBounds(10, 50, 271, 154);
 		contentPane.add(scrollPane);
 		
-		JList list = new JList(controle.getJours());
+		list = new JList(contenuLst);
 		scrollPane.setViewportView(list);
 		
 		JButton btnRetour = new JButton("Retour");
@@ -47,18 +64,11 @@ public class CalendrierVue extends JFrame {
 		contentPane.add(btnRetour);
 		
 		if (employe) {
-			JButton btnModifier = new JButton("Modifier");
-			btnModifier.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					
-				}
-			});
-			btnModifier.setBounds(293, 19, 89, 23);
-			contentPane.add(btnModifier);
-			
+
 			JButton btnAjouter = new JButton("Ajouter");
 			btnAjouter.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					controle.beginAddJour();
 				}
 			});
 			btnAjouter.setBounds(293, 57, 89, 23);
@@ -67,10 +77,24 @@ public class CalendrierVue extends JFrame {
 			JButton btnSupprimer = new JButton("Supprimer");
 			btnSupprimer.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
+					cmdSupprimer();
 				}
 			});
 			btnSupprimer.setBounds(293, 99, 89, 23);
 			contentPane.add(btnSupprimer);
+			
+			JButton btnInfo = new JButton("Info");
+			btnInfo.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					controle.beginInfoJour(list.getSelectedIndex());
+				}
+			});
+			btnInfo.setBounds(291, 19, 89, 23);
+			contentPane.add(btnInfo);
+			
+			JLabel lblNewLabel = new JLabel("Calendrier :");
+			lblNewLabel.setBounds(10, 23, 107, 14);
+			contentPane.add(lblNewLabel);
 		}
 	}
 

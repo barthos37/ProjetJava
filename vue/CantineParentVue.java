@@ -30,7 +30,7 @@ public class CantineParentVue extends JFrame {
 	 * Create the frame.
 	 */
 	
-	public void majLst(ArrayList<Eleve> enfants) {
+	public void majLst(ArrayList<Eleve> enfants) { //mets à jour la liste d'enfants
 		contenuLst.clear();
 		for (Eleve e : enfants) {
 			String ligne = e.getNom()+" "+e.getPrenom()+ " : ";

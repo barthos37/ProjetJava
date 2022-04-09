@@ -35,7 +35,7 @@ public class AccueuilVue extends JFrame {
 		});
 		btnCantineParent.setBounds(5, 5, 215, 256);
 		contentPane.add(btnCantineParent);
-		
+
 		JButton btnCantineEmploye = new JButton("Cantine Employe");
 		btnCantineEmploye.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
