@@ -1,6 +1,6 @@
 package modele;
 
-public class Jour<Date,Menu> {
+public class Jour<D extends Date,M extends Menu> {
 	private Date date;
 	private Menu menu;
 	
@@ -19,7 +19,9 @@ public class Jour<Date,Menu> {
 	}
 	public void setMenu(Menu menu) {
 		this.menu = menu;
+		
 	}
-	
-
+	public String toString() {
+		return (date.toString()+ " : " + menu.getNom());
+	}
 }

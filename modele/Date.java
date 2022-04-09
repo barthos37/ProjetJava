@@ -27,7 +27,7 @@ public class Date {
 			case 9 : ligne+=" Septembre ";break;
 			case 10 : ligne+=" Octobre ";break;
 			case 11 : ligne+=" Novembre ";break;
-			case 12 : ligne+=" DÃ©cembre ";break;
+			case 12 : ligne+=" Décembre ";break;
 		}
 		ligne+=annee;
 		return ligne;

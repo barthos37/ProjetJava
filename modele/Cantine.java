@@ -34,6 +34,18 @@ public class Cantine {
 		this.calendrier=calendrier;
 	}
 	
+	public void deleteJour(int index) {
+		calendrier.remove(index);
+	}
+	
+	public Date getDate(int index) {
+		return calendrier.get(index).getDate();
+	}
+	
+	public void addJour (Jour jour) {
+		calendrier.add(jour);
+	}
+	
 	public ArrayList<Jour<Date,Menu>> getCalendrier (){
 		return calendrier;
 	}

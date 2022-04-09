@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 
 public class Menu {
-	private String nom;
+	public String nom;
 	private ArrayList<Aliment> aliments;
 	public Menu(String nom, ArrayList<Aliment> aliments) {
 		this.nom = nom;
