@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Eleve extends Personne {
 	private int solde;
 	private ArrayList<Activite> activites;
-	private Abonnement abonnement; //null si pas d'abonnement
-	public Eleve(String nom, String prenom, int solde, ArrayList<Activite> activites, Abonnement abonnement) {
+	private int abonnement; //null si pas d'abonnement
+	public Eleve(String nom, String prenom, int solde, int abonnement) {
 		super(nom,prenom);
 		this.solde=solde;
 		this.activites=activites;
@@ -22,10 +22,10 @@ public class Eleve extends Personne {
 	public ArrayList<Activite> getActivites(){
 		return activites;
 	}
-	public Abonnement getAbonnement() {
+	public int getAbonnement() {
 		return abonnement;
 	}
-	public void setAbonnement(Abonnement abonnement) {
+	public void setAbonnement(int abonnement) {
 		this.abonnement = abonnement;
 	}
 	public boolean addActivite(Activite activite) {

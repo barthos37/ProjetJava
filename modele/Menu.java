@@ -21,7 +21,6 @@ public class Menu {
 	public void setAliments(ArrayList<Aliment> aliments) {
 		this.aliments = aliments;
 	}
-	
 	public void addAliment(Aliment aliment) {
 		this.aliments.add(aliment);
 	}

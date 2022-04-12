@@ -33,6 +33,19 @@ public class Date {
 		return ligne;
 	}
 	
+	
+	public int getAnnee() {
+		return annee;
+	}
+
+	public int getMois() {
+		return mois;
+	}
+
+	public int getJour() {
+		return jour;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(annee, jour, mois);
