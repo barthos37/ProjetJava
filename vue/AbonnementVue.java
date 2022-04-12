@@ -24,9 +24,6 @@ public class AbonnementVue extends JFrame {
 	private DefaultListModel contenuLst = new DefaultListModel ();
 	private JList list;
 	
-	public void cmdConfirmer() {
-		controle.retour(list.getSelectedIndex());
-	}
 	
 	public AbonnementVue(AbonnementControlleur controle, ArrayList<Abonnement> lstAbonnement) {
 		this.controle=controle;
@@ -60,7 +57,8 @@ public class AbonnementVue extends JFrame {
 		JButton btnConfirmer = new JButton("Confirmer");
 		btnConfirmer.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				cmdConfirmer();
+				if(list.getSelectedIndex()!=-1)
+					controle.retour(list.getSelectedIndex());
 			}
 		});
 		btnConfirmer.setBounds(10, 201, 89, 23);

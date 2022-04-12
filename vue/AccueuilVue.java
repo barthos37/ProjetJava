@@ -11,11 +11,15 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 
 public class AccueuilVue extends JFrame {
 
 	private JPanel contentPane;
 	private AccueuilControlleur controle;
+	private JTextField textId;
+	private JTextField textMdp;
 
 
 	public AccueuilVue(Controlleur c) {
@@ -27,22 +31,35 @@ public class AccueuilVue extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnCantineParent = new JButton("Cantine Parent");
-		btnCantineParent.addActionListener(new ActionListener() {
+		JLabel lblNewLabel = new JLabel("Connexion");
+		lblNewLabel.setBounds(10, 11, 75, 14);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("Identifiant");
+		lblNewLabel_1.setBounds(10, 69, 75, 14);
+		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Mot de passe");
+		lblNewLabel_2.setBounds(10, 117, 75, 14);
+		contentPane.add(lblNewLabel_2);
+		
+		textId = new JTextField();
+		textId.setBounds(95, 66, 86, 20);
+		contentPane.add(textId);
+		textId.setColumns(10);
+		
+		textMdp = new JTextField();
+		textMdp.setBounds(95, 114, 86, 20);
+		contentPane.add(textMdp);
+		textMdp.setColumns(10);
+		
+		JButton btnConnexion = new JButton("Connexion");
+		btnConnexion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controle.beginCantineParent();
+				controle.connexion(textId.getText(), textMdp.getText());
 			}
 		});
-		btnCantineParent.setBounds(5, 5, 215, 256);
-		contentPane.add(btnCantineParent);
-
-		JButton btnCantineEmploye = new JButton("Cantine Employe");
-		btnCantineEmploye.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				controle.beginCantineEmploye();
-			}
-		});
-		btnCantineEmploye.setBounds(219, 5, 215, 256);
-		contentPane.add(btnCantineEmploye);
+		btnConnexion.setBounds(92, 168, 89, 23);
+		contentPane.add(btnConnexion);
 	}
 }

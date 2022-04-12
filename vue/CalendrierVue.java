@@ -33,10 +33,7 @@ public class CalendrierVue extends JFrame {
 		}
 	}
 	
-	public void cmdSupprimer() {
-		controle.delete(list.getSelectedIndex());
-	}
-	
+
 	
 	public CalendrierVue(CalendrierControlleur controle, boolean employe) {
 		this.controle=controle;
@@ -54,14 +51,30 @@ public class CalendrierVue extends JFrame {
 		list = new JList(contenuLst);
 		scrollPane.setViewportView(list);
 		
-		JButton btnRetour = new JButton("Retour");
+		JButton btnRetour;
+		if (employe) btnRetour = new JButton("Déconnexion");
+		else btnRetour = new JButton("Retour");
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controle.retour();
 			}
 		});
-		btnRetour.setBounds(10, 227, 89, 23);
+		btnRetour.setBounds(10, 215, 89, 23);
 		contentPane.add(btnRetour);
+		
+		JLabel lblNewLabel = new JLabel("Calendrier :");
+		lblNewLabel.setBounds(10, 23, 107, 14);
+		contentPane.add(lblNewLabel);
+		
+		JButton btnInfo = new JButton("Info");
+		btnInfo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (list.getSelectedIndex()!=-1)
+					controle.beginInfoJour(list.getSelectedIndex());
+			}
+		});
+		btnInfo.setBounds(291, 19, 89, 23);
+		contentPane.add(btnInfo);
 		
 		if (employe) {
 
@@ -77,24 +90,13 @@ public class CalendrierVue extends JFrame {
 			JButton btnSupprimer = new JButton("Supprimer");
 			btnSupprimer.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent e) {
-					cmdSupprimer();
+					if (list.getSelectedIndex()!=-1)
+						controle.delete(list.getSelectedIndex());
 				}
 			});
 			btnSupprimer.setBounds(293, 99, 89, 23);
-			contentPane.add(btnSupprimer);
-			
-			JButton btnInfo = new JButton("Info");
-			btnInfo.addActionListener(new ActionListener() {
-				public void actionPerformed(ActionEvent e) {
-					controle.beginInfoJour(list.getSelectedIndex());
-				}
-			});
-			btnInfo.setBounds(291, 19, 89, 23);
-			contentPane.add(btnInfo);
-			
-			JLabel lblNewLabel = new JLabel("Calendrier :");
-			lblNewLabel.setBounds(10, 23, 107, 14);
-			contentPane.add(lblNewLabel);
+			contentPane.add(btnSupprimer);		
+
 		}
 	}
 

@@ -34,11 +34,7 @@ public class CantineParentVue extends JFrame {
 		contenuLst.clear();
 		for (Eleve e : enfants) {
 			String ligne = e.getNom()+" "+e.getPrenom()+ " : ";
-			if (e.getAbonnement() == null){
-				ligne+="Aucun abbonement";
-			}else {
-				ligne+=e.getAbonnement().getNom();
-			}
+			ligne+=controle.getAbonnement(e.getAbonnement()).getNom();
 			contenuLst.addElement(ligne);
 		}
 	}
@@ -75,13 +71,14 @@ public class CantineParentVue extends JFrame {
 		JButton btnMod = new JButton("Modifier Abonnement");
 		btnMod.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				controle.beginSetAbonnement(listEnfants.getSelectedIndex());
+				if (listEnfants.getSelectedIndex()!=-1)
+					controle.beginSetAbonnement(listEnfants.getSelectedIndex());
 			}
 		});
 		btnMod.setBounds(303, 85, 126, 23);
 		contentPane.add(btnMod);
 		
-		JButton btnRetour = new JButton("Retour");
+		JButton btnRetour = new JButton("Déconnexion");
 		btnRetour.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controle.retour();
@@ -90,12 +87,16 @@ public class CantineParentVue extends JFrame {
 		btnRetour.setBounds(303, 119, 126, 23);
 		contentPane.add(btnRetour);
 		
-		JLabel lblNewLabel = new JLabel("La cantine se situe 12 Rue Victor Hugo");
+		JLabel lblNewLabel = new JLabel("La cantine se situe "+controle.getLieu());
 		lblNewLabel.setBounds(10, 199, 315, 20);
 		contentPane.add(lblNewLabel);
 		
-		JLabel lblNewLabel_1 = new JLabel("Elle ouvre de 12h à 13h30 du lundi au vendredi");
+		JLabel lblNewLabel_1 = new JLabel("Elle ouvre de "+controle.getHoraires()[0]+" à "+controle.getHoraires()[1]+".");
 		lblNewLabel_1.setBounds(10, 230, 315, 14);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel_2 = new JLabel("Bienvenue "+controle.getNomPrenom());
+		lblNewLabel_2.setBounds(10, 7, 219, 14);
+		contentPane.add(lblNewLabel_2);
 	}
 }
