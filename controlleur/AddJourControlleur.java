@@ -10,16 +10,12 @@ public class AddJourControlleur {
 	private CalendrierControlleur controle;
 	private Cantine cantine;
 	
-	private ArrayList<Aliment> lstIngredients = new ArrayList<Aliment>(); //liste des ingredients possibles
+	private ArrayList<Aliment> lstIngredients;; //liste des ingredients possibles
 	
 	public AddJourControlleur(CalendrierControlleur controle, Cantine cantine) { 
 		this.cantine=cantine;
 		this.controle = controle;
-		
-		lstIngredients.add(new Aliment ("Boeuf Haché",new ArrayList<Allergene>()));
-		lstIngredients.add(new Aliment ("Haricots rouges",new ArrayList<Allergene>()));
-		lstIngredients.add(new Aliment ("Sauce tomate", new ArrayList<Allergene>()));
-		lstIngredients.add(new Aliment ("Pate", new ArrayList<Allergene>()));
+		lstIngredients = cantine.getLstIngredient();
 		
 		frm = new AddJourVue(this);
 		frm.setVisible(true);
@@ -41,6 +37,7 @@ public class AddJourControlleur {
 			menu.addAliment(lstIngredients.get(i));
 		}
 		cantine.addJour(new Jour (date,menu));
+		
 		frm.setVisible(false);
 		controle.end();
 	}
