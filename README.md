@@ -19,17 +19,18 @@ Les use cases d'un parent d'élève sont :
 * Afficher le calendrier des menus
 * Afficher les informations du menu d'un jour
 
-### Choix d'implémentation
-***
-Nous avons choisi travailler avec le modèle MVC (model - view - controller) : chaque page a deux classes, sa vue et son controlleur et chaque objet a une classe dédiée dans le modèle.<br/>
-Lors d'un changement de page, le controleur appelle un autre controleur avec sa méthode _beginPage_ en se mettant en argument. Il y a retour à cette page quand le controleur fils appelle la méthode _endPage_ du controleur père.
-
 ### Base de donnée
 ***
-Nous avons choisi de stocker toutes les données dans des fichiers .bdd où les informations sont stockées en clair.<br/>
+Nous avons choisi de stocker toutes les données dans des fichiers .bdd où toutes les informations sont écrites directmenet en clair.<br/>
 Pour se faire nous avons eu recours à plusieurs fichiers :
 * abonnement.bdd : La liste des abonnements possibles, chaque ligne est sous la forme Nom+Description.
 * aliment.bdd : La listes des aliments disponibles lors de la création d'un menu.
 * employe.bdd : La liste d'identifiants d'emplloyes.
 * cantine.bdd : Première ligne : horaires. Deuxième ligne : adresse. Autres lignes menu d'un jour (Année+Mois+Jour+Nom menu+ingrédients)
 * parent/ : Chaque fichier parent est de nom identifiant.bdd. Première ligne : Nom+Prénom. Deuxième ligne : mot de passe. Autres lignes : enfants (Nom+Prénom+type d'abonnement)
+
+### Choix d'implémentation
+***
+Nous avons choisi travailler avec le modèle MVC (model - view - controller) : chaque page a deux classes, sa vue et son controlleur et chaque objet a une classe dédiée dans le modèle.<br/>
+Lors d'un changement de page, le controleur appelle un autre controleur avec sa méthode _beginPage_ en se mettant en argument. Il y a retour à cette page quand le controleur fils appelle la méthode _endPage_ du controleur père.
+
