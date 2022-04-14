@@ -14,6 +14,11 @@ public class AccueuilControlleur implements Controlleur{
 	private AccueuilVue frm;
 	private Cantine cantine = new Cantine ();
 	
+	public AccueuilControlleur () {
+		frm = new AccueuilVue(this);
+		frm.setVisible(true);
+	}
+	
 	public void beginCantineEmploye () { //lance le controlleur calendrier en mode employe
 		frm.setVisible(false);
 		new CalendrierControlleur(this,cantine,true);
@@ -21,43 +26,19 @@ public class AccueuilControlleur implements Controlleur{
 	
 	public void connexion (String id, String mdp) {
 		//test parent
-		FileInputStream fis;
 		try {
-			fis = new FileInputStream("src/bdd/parent/"+id+".bdd");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-			
-			reader.readLine();
-			if (mdp.equals(reader.readLine())) {
-				new CantineParentControlleur(this,new Parent(id),cantine);
-				frm.setVisible(false);
-			}
-				
-			fis.close();
-		} catch (IOException e) {}
+			Parent p = new Parent(id,mdp); //si un compte n'existe pas, soulève Exception
+			new CantineParentControlleur(this,p,cantine);
+			frm.setVisible(false);
+		} catch (Exception e) {}
 		//test employe
-		try {
-			fis = new FileInputStream("src/bdd/employe.bdd");
-			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
-			
-			String ligne;
-			while((ligne=reader.readLine())!=null) {
-				if(id.equals(ligne.split("\t")[0]) && mdp.equals(ligne.split("\t")[1])){
-					frm.setVisible(false);
-					new CalendrierControlleur(this,cantine,true);
-				}
-			}
-				
-			fis.close();
-		} catch (IOException e) {
-			e.printStackTrace();
+		if (cantine.testConnexionEmploye(id, mdp)){
+			frm.setVisible(false);
+			new CalendrierControlleur(this,cantine,true);
 		}
-		
 	}
-	public void end () {  //lorsqu'un controlleur fils est fini
+	public void end () {  //appelé lorsqu'un controlleur fils est fini
 		frm.setVisible(true);
 	}
-	public AccueuilControlleur () {
-		frm = new AccueuilVue(this);
-		frm.setVisible(true);
-	}
+
 }
