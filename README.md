@@ -11,7 +11,7 @@ La page d'accueuil est page de connexion, il y a deux types de connexion :
 * Les employés de mairie (les identifiants sont dans le fichier bdd/employe.bdd)
 * Les parents d'élèves (les idenfiants sont dans le dossier bdd/parent l'idenfiant est le nom du fichier et le mot de passe est la deuxième ligne)<br/><br/>
 Les use cases de l'employe de mairie sont :
-* Ajouter un jour avec un menu dans le calendrier (il faut app
+* Ajouter un jour avec un menu dans le calendrier (il faut appuyer sur la touche ctrl pour selectionner plusieurs ingrédients)
 * Supprimer un jour du calendrier
 * Afficher les informations du menu d'un jour<br/><br/>
 Les use cases d'un parent d'élève sont :
