@@ -34,3 +34,5 @@ Pour se faire nous avons eu recours à plusieurs fichiers :
 Nous avons choisi travailler avec le modèle MVC (model - view - controller) : chaque page a deux classes, sa vue et son controlleur et chaque objet a une classe dédiée dans le modèle.<br/>
 Lors d'un changement de page, le controleur appelle un autre controleur avec sa méthode _beginPage_ en se mettant en argument. Il y a retour à cette page quand le controleur fils appelle la méthode _endPage_ du controleur père.
 
+***
+<p align="right">Développé par le groupe 8</p>
