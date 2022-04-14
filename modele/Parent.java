@@ -44,22 +44,7 @@ public class Parent extends Personne {
 			fis.close();
 
 	}
-	
-	public boolean addEnfant(Eleve enfant) {
-		return this.enfants.add(enfant);
-	}
-	
-	public boolean removeEnfant(Eleve enfant) {
-		return this.enfants.remove(enfant);
-	}
-	
-	public boolean addFacture(Facture facture) {
-		return this.factures.add(facture);
-	}
-	
-	public boolean removeFacture(Facture facture) {
-		return this.factures.remove(facture);
-	}
+
 	
 	public ArrayList<Eleve> getEnfants(){
 		return enfants;
@@ -67,6 +52,7 @@ public class Parent extends Personne {
 
 	public void setEnfants(int idEnfant,Eleve enfant){
 		this.enfants.set(idEnfant, enfant);
+		majParent();
 	}
 	
 	public void majParent () {//mise a jour de la bdd en réecrivant toutes les données
