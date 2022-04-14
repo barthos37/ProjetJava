@@ -27,12 +27,10 @@ public class AbonnementControlleur {
 	public Abonnement getAbonnement () {
 		return lstAbonnement.get(p.getEnfants().get(idEnfant).getAbonnement());
 	}
-	public void retour (int idAbonnement) { //fermeture de la fenetre, on met à jour l'abonnement dans p.enfants
+	public void retour (int idAbonnement) { //fermeture de la fenetre, on met Ã  jour l'abonnement dans p.enfants
 		Eleve enfant = p.getEnfants().get(idEnfant);
 		enfant.setAbonnement(idAbonnement);
 		p.setEnfants(idEnfant, enfant);
-		
-		p.majParent();
 		
 		frm.setVisible(false);
 		controle.endSetAbonnement();
