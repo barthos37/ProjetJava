@@ -2,6 +2,7 @@ package modele;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -14,20 +15,26 @@ public class Parent extends Personne {
 	private ArrayList<Eleve> enfants = new ArrayList<Eleve>();
 	private String mdp;
 
-	public Parent(String id) {
+	public Parent(String id,String mdp) throws Exception { //envoie Exception si les identifiants ne correspondent pas
 		super("","");
-		this.enfants=enfants;
 		this.id=id;
 		FileInputStream fis;
-		try {
-			fis = new FileInputStream("src/bdd/parent/"+id+".bdd");
+
+			fis = new FileInputStream("src/bdd/parent/"+id+".bdd"); //envoie IOException si le fichier n'existe pas
 			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
 			
 			String ligne=reader.readLine();
 			this.setNom(ligne.split("\t")[0]);
 			this.setPrenom(ligne.split("\t")[1]);
 			
-			mdp=reader.readLine();
+			if (mdp.equals(reader.readLine())) {
+				this.mdp=mdp;
+			}
+			else {
+				reader.close();
+				fis.close();
+				throw new Exception();
+			}
 			
 			while ((ligne = reader.readLine())!=null) {
 				enfants.add(new Eleve(ligne.split("\t")[0],ligne.split("\t")[1],0,Integer.parseInt(ligne.split("\t")[2])));
@@ -35,10 +42,7 @@ public class Parent extends Personne {
 			
 			reader.close();
 			fis.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+
 	}
 	
 	public boolean addEnfant(Eleve enfant) {
@@ -65,7 +69,7 @@ public class Parent extends Personne {
 		this.enfants.set(idEnfant, enfant);
 	}
 	
-	public void majParent () {
+	public void majParent () {//mise a jour de la bdd en réecrivant toutes les données
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("src/bdd/parent/"+id+".bdd"));
 			
