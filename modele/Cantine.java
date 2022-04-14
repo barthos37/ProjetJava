@@ -119,7 +119,26 @@ public class Cantine {
 		return l;
 	}
 	
-	public void majBdd () { //actualise le fichier cantine.bdd
+	public boolean testConnexionEmploye (String id, String mdp) {
+		try {
+			FileInputStream fis = new FileInputStream("src/bdd/employe.bdd");
+			BufferedReader reader = new BufferedReader(new InputStreamReader(fis));
+			
+			String ligne;
+			while((ligne=reader.readLine())!=null) {
+				if(id.equals(ligne.split("\t")[0]) && mdp.equals(ligne.split("\t")[1])){
+					return true;
+				}
+			}
+				
+			fis.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public void majBdd () { //actualise le fichier cantine.bdd en réécrivant tout
 		try {
 			BufferedWriter writer = new BufferedWriter(new FileWriter("src/bdd/cantine.bdd"));
 			
